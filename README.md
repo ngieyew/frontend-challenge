@@ -17,8 +17,15 @@ Install the necessary dependencies:
 * `npm install`
 * `npm install -g nodemon`
 
-Start the development server
+Both servers should be running 
+
+Start the development server on port `8080`
 * `npm serve`
+
+Start the client server on port `5173`
+* `cd haikubot-client`
+* `npm install`
+* `npm run dev`
 
 note: Please do not modify any of the files found in the `/api` folder.
 
@@ -28,8 +35,8 @@ Your task is to develop the frontend for HaikuBot, which interacts with a backen
 
 ### Setup
 
-- **Project Structure**: Please organize your frontend code within a dedicated folder in the project repository. This will help maintain a clean and structured codebase.
-- **Framework/Library**: You are free to use any frontend framework or library (e.g., React, Vue, Angular) that you are comfortable with. However, we recommend Vue 3 as this will be the framework the successful candidate will be working with.
+- **Project Structure**: Please organize your frontend code within the dedicated folder in the project repository. This will help maintain a clean and structured codebase.
+- **Framework/Library**: Please use Vue 3 to complete this project. 
 - **Third-party packages**: We are fine with the usage of third-party component or utility libraries, but no overkill please!
 
 ### API Endpoints

@@ -1,13 +1,15 @@
 // DO NOT MODIFY THIS FILE
-
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
+
 const fs = require('fs');
 const multer = require('multer');
 
 const app = express();
 const port = process.env.PORT || 8080;
 
+app.use(cors())
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.raw({ type: 'text/plain', limit: '10mb' }));
@@ -32,16 +34,16 @@ const generateHaiku = () => {
 }
 
 app.get('/api/ping', (req, res) => {
-    res.sendStatus(200);
+    res.status(200).json({ status: 'ok' }); 
 });
 
 app.post('/api/update', (req, res) => {
     haikuHistory.push(req.body.text); 
-    res.sendStatus(200);
+    res.status(200).json({ status: 'success' }); 
 });
 
 app.get('/api/history', (req, res) => {
-    res.json(haikuHistory);
+    res.status(200).json(haikuHistory);
 });
 
 app.post('/api/upload', upload.single('file'), (req, res) => {
@@ -53,7 +55,7 @@ app.post('/api/upload', upload.single('file'), (req, res) => {
         const fileContent = req.file.buffer.toString('utf-8');
         haikuHistory.push(fileContent);
         
-        res.sendStatus(200);
+        res.status(200).json({ status: 'success' }); 
     } else {
         res.status(400).send("Unsupported file type");
     }
