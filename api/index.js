@@ -51,8 +51,6 @@ app.post("/api/upload", upload.single("file"), (req, res) => {
     return res.status(400).send("No file uploaded.");
   }
 
-  console.log("req", req);
-
   if (req.file.mimetype === "text/plain") {
     const fileContent = req.file.buffer.toString("utf-8");
     haikuHistory.push(fileContent);

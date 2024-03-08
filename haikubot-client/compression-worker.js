@@ -14,11 +14,10 @@ self.onmessage = (event) => {
     reader.onload = (event) => {
       let text = event.target.result;
       text = text.trim(); // Trim whitespaces
-      const compressedText = encodeURIComponent(text); // "Compress" text
-      const compressedBlob = new Blob([compressedText]);
-      postMessage({ compressedBlob, offset, fileName: `${file.name}.gz` });
       if (offset < file.size) {
         readChunk();
+      } else {
+        postMessage({ offset, file, fileName: file.name });
       }
     };
     reader.onerror = (error) => {
