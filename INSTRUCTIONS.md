@@ -32,3 +32,9 @@ npm i
 ```
 npm run dev
 ```
+
+4. Add .env file as below inside for pointing api url
+
+```
+VITE_API_URL=http://localhost:8080
+```

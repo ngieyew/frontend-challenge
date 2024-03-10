@@ -57,7 +57,7 @@ export default {
   },
   methods: {
     async isValidHaikuFormat(text) {
-      const worker = new Worker('/validation-worker.js');
+      const worker = new Worker(new URL('./workers/validation-worker.js', import.meta.url));
       worker.postMessage(text);
       const result = await new Promise((resolve) => {
         worker.onmessage = (event) => {
@@ -123,6 +123,7 @@ export default {
         console.error('Post Error:', error);
       }
     },
+    // TODO: not sure if we need this
     async fetchHistory() {
       try {
         const response = await fetch(`${import.meta.env.VITE_API_URL}/api/history`);
@@ -211,7 +212,7 @@ export default {
           this.uploadStatus = 'error';
           return false;
         }
-        const worker = new Worker('/compression-worker.js');
+        const worker = new Worker(new URL('./workers/compression-worker.js', import.meta.url));
         console.log('Compression start')
         worker.postMessage(file);
 
@@ -245,6 +246,7 @@ export default {
       this.uploadStatus = 'idle'; // Reset status to 'idle'
       const file = event.target.files[0];
 
+      // TODO: Limit file size
       // Limit file size
       // const maxSize = 5 * 1024 * 1024; // 5MB
 
